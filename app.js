@@ -34,12 +34,12 @@ function renderRestorant(doc) {
 //we can also query the data using
 // where('name','conditions', 'value' ) 
 //use where b/w collection and get() functions
-db.collection('restorant').orderBy('name').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        //.data() is used to show the data at console 
-        renderRestorant(doc);
-    })
-});
+// db.collection('restorant').orderBy('name').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         //.data() is used to show the data at console 
+//         renderRestorant(doc);
+//     })
+// });
 
 //save the data
 
@@ -53,4 +53,18 @@ form.addEventListener('submit', (e) => {
 
     form.name.value = '';
     form.city.value = '';
+});
+//real time data
+
+db.collection('restorant').orderBy('city').onSnapshot(snapshot => {
+    let changes = snapshot.docChanges();
+    changes.forEach(change => {
+        if(change.type == 'added') {
+            renderRestorant(change.doc);
+        }
+        else if(change.type == 'removed') {
+            let li = cafeList.querySelector('[data-id=' + change.doc.id + ']');
+            cafeList.removeChild(li);
+        }
+    })
 })

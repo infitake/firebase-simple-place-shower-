@@ -31,7 +31,10 @@ function renderRestorant(doc) {
 
 //get the data
 //this is a synchronous call so we use then method inside it
-db.collection('restorant').get().then((snapshot) => {
+//we can also query the data using
+// where('name','conditions', 'value' ) 
+//use where b/w collection and get() functions
+db.collection('restorant').orderBy('name').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         //.data() is used to show the data at console 
         renderRestorant(doc);

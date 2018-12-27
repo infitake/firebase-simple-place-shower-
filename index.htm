@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Restorant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    
+</head>
+<body>
+ 
+        <h1>Cloud Restro Cafe</h1>
+
+        <div class="content">
+
+            <form id="add-cafe-form">
+                <input type="text" name="name" placeholder="retro name">
+                <input type="text" name="city" placeholder="city">
+                <button>add retro</button>
+            </form>
+
+            <ul id="cafe-list"></ul>
+
+        </div>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBhb4NUGpUibB6kl-gJKAmMHhKTppaPyTQ",
+    authDomain: "fir-firestore-1235a.firebaseapp.com",
+    databaseURL: "https://fir-firestore-1235a.firebaseio.com",
+    projectId: "fir-firestore-1235a",
+    storageBucket: "",
+    messagingSenderId: "755439868023"
+  };
+  firebase.initializeApp(config);
+  const db = firebase.firestore();
+  db.settings({ timestampsInSnapshots: true });
+</script>
+    <script src="app.js"></script>
+</body>
+</html>
